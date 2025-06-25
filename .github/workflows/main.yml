@@ -41,7 +41,7 @@ jobs:
           #CODE_SIGN_IDENTITY="iPhone Distribution" \
           #CODE_SIGN_STYLE="Automatic"
           xcodebuild \
-          -workspace SampleAppWithCocoapods.xcworkspace \
+          -workspace ./SampleAppWithCocoapods/SampleAppWithCocoapods.xcworkspace \
           -scheme SampleAppWithCocoapods \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 15' \
