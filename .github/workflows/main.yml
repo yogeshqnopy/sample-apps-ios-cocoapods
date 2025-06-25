@@ -1,0 +1,53 @@
+name: Build and Deploy iOS App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: macos-latest  # We need a macOS runner for iOS builds
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up CocoaPods (if using CocoaPods for dependencies)
+      - name: Install CocoaPods dependencies
+        run: |
+          sudo gem install cocoapods
+          pod install
+
+      # Step 3: Set up Xcode (optional: specify version if needed)
+      - name: Set up Xcode
+        run: sudo xcode-select -s /Applications/Xcode_12.5.app/Contents/Developer
+
+      # Step 4: Build the app using xcodebuild
+      - name: Build iOS app
+        run: |
+          xcodebuild -workspace SampleAppWithCocoapods.xcworkspace \
+          -sdk iphoneos \
+          -configuration Release \
+          clean build \
+          CODE_SIGN_IDENTITY="iPhone Distribution" \
+          CODE_SIGN_STYLE="Automatic"
+
+      # Step 5: Export the IPA (final build artifact)
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive -archivePath ./build/YourApp.xcarchive \
+          -exportPath ./build/YourApp.ipa \
+          -exportOptionsPlist exportOptions.plist
+
+      # Step 6: Upload IPA as artifact
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipa-file
+          path: ./build/YourApp.ipa
