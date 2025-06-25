@@ -13,11 +13,15 @@ on:
 jobs:
   build:
     runs-on: macos-latest  # We need a macOS runner for iOS builds
-
+    
     steps:
+      - name: SSH into the Runner
+        uses: mxschmitt/action-tmate@v3
+        
       # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
+        
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
