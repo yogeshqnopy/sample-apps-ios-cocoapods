@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-
+workspace 'path/to/Workspace.xcworkspace'
 # pod 'Functional.m', '~> 1.0'
 
 # Add Kiwi as an exclusive dependency for the Test target
