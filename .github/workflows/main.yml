@@ -33,13 +33,20 @@ jobs:
       # Step 4: Build the app using xcodebuild
       - name: Build iOS app
         run: |
-          xcodebuild -workspace ./SampleAppWithCocoapods/SampleAppWithCocoapods.xcworkspace \
-          -scheme SampleAppWithCocoapods
-          -sdk iphoneos \
-          -configuration Release \
-          clean build \
-          CODE_SIGN_IDENTITY="iPhone Distribution" \
-          CODE_SIGN_STYLE="Automatic"
+          #xcodebuild -workspace ./SampleAppWithCocoapods/SampleAppWithCocoapods.xcworkspace \
+          #-scheme SampleAppWithCocoapods
+          #-sdk iphoneos \
+          #-configuration Release \
+          #clean build \
+          #CODE_SIGN_IDENTITY="iPhone Distribution" \
+          #CODE_SIGN_STYLE="Automatic"
+          xcodebuild \
+          -workspace SampleAppWithCocoapods.xcworkspace \
+          -scheme SampleAppWithCocoapods \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 15' \
+          CODE_SIGNING_ALLOWED=NO \
+          build
 
       # Step 5: Export the IPA (final build artifact)
       - name: Export IPA
