@@ -1,3 +1,4 @@
+
 name: Build and Deploy iOS App
 
 on:
@@ -21,6 +22,7 @@ jobs:
       # Step 2: Set up CocoaPods (if using CocoaPods for dependencies)
       - name: Install CocoaPods dependencies
         run: |
+          cd SampleAppWithCocoapods
           sudo gem install cocoapods
           pod install
 
