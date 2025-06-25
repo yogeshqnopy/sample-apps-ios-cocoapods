@@ -50,7 +50,7 @@ jobs:
           #CODE_SIGNING_ALLOWED=NO \
           #build
           xcodebuild \
-          -project SampleAppWithCocoapods.xcodeproj \
+          -project ./SampleAppWithCocoapods/SampleAppWithCocoapods.xcodeproj \
           -target SampleAppWithCocoapods \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 15' \
