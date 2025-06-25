@@ -4,9 +4,9 @@ platform :ios, '8.0'
 # pod 'Functional.m', '~> 1.0'
 
 # Add Kiwi as an exclusive dependency for the Test target
-target :SampleAppWithCocoapodsTests, :exclusive => true do
-  pod 'Kiwi'
-end
+#target :SampleAppWithCocoapodsTests, :exclusive => true do
+#  pod 'Kiwi'
+#end
 
 # post_install do |installer_representation|
 #   installer_representation.project.targets.each do |target|
